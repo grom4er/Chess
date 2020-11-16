@@ -6,14 +6,15 @@ import org.junit.jupiter.api.Test;
 
 public class TestPawn {
 
+
     @Test
-    void test() {
+    void attackInSameLane() {
         Table testTable = new Table();
         Pawn pawn = new Pawn(Figure.Colour.WHITE);
-        Rook rook = new Rook(Figure.Colour.WHITE);
-        testTable.putFigure(new Coordinates("a1"), rook);
-        testTable.putFigure(new Coordinates("a5"), pawn);
-        Assert.assertEquals(rook.isWayClean(new Coordinates("a1"), new Coordinates("a6"), testTable),true);
+        Rook rook = new Rook(Figure.Colour.BLACK);
+        testTable.putFigure(new Coordinates("a3"), rook);
+        testTable.putFigure(new Coordinates("a2"), pawn);
+        Assert.assertEquals(testTable.move(new Coordinates("a2"), new Coordinates("a3")),false);
     }
 
 
@@ -111,34 +112,4 @@ public class TestPawn {
     }
 
 
-    void createCharapter() {
-        char start = 'A';
-        System.out.println();
-        for (int i = 0; i < 8; i++) {
-            System.out.print(" ".repeat(12) + start++);
-        }
-    }
-
-    void show(Table table) {
-        createCharapter();
-        for (int i = 7; i >= 0; i--) {
-            System.out.print("\n" + (i + 1) + " ");
-            for (int j = 0; j < 8; j++) {
-                if (table.figures[i][j] == null) {
-                    System.out.print("Empty ");
-                    continue;
-                }
-                System.out.print(table.figures[i][j].toString());
-            }
-
-        }
-        createCharapter();
-    }
-
-
-    public static void main(String[] args) {
-        TestPawn test = new TestPawn();
-
-
-    }
 }

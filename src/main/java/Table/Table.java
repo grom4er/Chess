@@ -2,6 +2,9 @@ package Table;
 
 import Figure.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Table {
     public Figure[][] figures = new Figure[8][8];
@@ -9,8 +12,6 @@ public class Table {
     public Coordinates getAndSetCoordinates(int x, int y) {
         return new Coordinates(x, y);
     }
-
-    //Inner class
 
 
     public Table() {
@@ -70,20 +71,58 @@ public class Table {
 
 
     public boolean move(Coordinates from, Coordinates to) {
-        if (isCellEmpty(from)) return false;
         Figure fromFigure = getFigure(from);
-        if (!fromFigure.isMovePossible(from, to, this)) return false;
-        if (!isCellEmpty(to) && isSameColour(fromFigure, to)) return false;
-        if (!fromFigure.isWayClean(from, to, this)) return false;
+        Figure toFigure = getFigure(to);
+        if (!moveCheck(from, to, fromFigure)) return false;
         putFigure(to, fromFigure);
         clean(from);
+
+        if (kingIsAttack(fromFigure.colour)) {
+            putFigure(from, fromFigure);
+            putFigure(to, toFigure);
+        }
+
+
         return true;
     }
 
-    public void clean(Coordinates coordinates) {
+    private boolean moveCheck(Coordinates from, Coordinates to, Figure fromFigure) {
+        if (isCellEmpty(from)) return false;
+        if (!fromFigure.isMovePossible(from, to, this)) return false;
+        if (!isCellEmpty(to) && isSameColour(fromFigure, to)) return false;
+        if (!fromFigure.isWayClean(from, to, this)) return false;
+        return true;
+    }
+
+    private void clean(Coordinates coordinates) {
         figures[coordinates.getX()][coordinates.getY()] = null;
     }
+
+    private <T extends Figure> List<Coordinates> getListOfCoordinateFigures(Class<T> type, Figure.Colour colour) {
+        List<Coordinates> list = new ArrayList<>();
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                Figure tempFigure = getFigure(getAndSetCoordinates(i, j));
+                if (type.isInstance(tempFigure) && tempFigure.colour != colour)
+                    list.add(getAndSetCoordinates(i, j));
+            }
+        }
+        return list;
+    }
+
+    private boolean kingIsAttack(Figure.Colour colour) {
+        List<Coordinates> kingsArtur = getListOfCoordinateFigures(King.class, colour);
+        List<Coordinates> enemies = getListOfCoordinateFigures(Figure.class, colour == Figure.Colour.WHITE ? Figure.Colour.BLACK : Figure.Colour.WHITE);
+        for (Coordinates enemy : enemies) {
+            for (Coordinates king : kingsArtur) {
+                Figure fromFigure = getFigure(enemy);
+                if (fromFigure.isMovePossible(enemy, king, this)
+                        && fromFigure.isWayClean(enemy, king, this)) return true;
+            }
+        }
+        return false;
+    }
+
+
 }
-
-
 

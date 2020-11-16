@@ -20,7 +20,7 @@ public class Pawn extends Figure {
                 if (coordinateY == 0 && (from.x == 1 && colour == 1 || from.x == 6 && colour == -1)) return true;
                 break;
             case 1:
-                if (coordinateY == 0 || (coordinateY == 1 && !table.isSameColour(table.getFigure(from), to)))
+                if ((coordinateY == 0 && table.isCellEmpty(to)) || (coordinateY == 1 && !table.isSameColour(table.getFigure(from), to)))
                     return true;
                 break;
 

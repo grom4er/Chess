@@ -15,7 +15,7 @@ public class Bishop extends Figure {
 
     @Override
     public boolean isMovePossible(Coordinates from, Coordinates to, Table table) {
-        return Math.abs(to.x - from.x) - Math.abs(to.y - from.y) == 0;
+        return Math.abs(to.x - from.x) == Math.abs(to.y - from.y);
     }
 
     @Override
@@ -32,15 +32,11 @@ public class Bishop extends Figure {
 }
 
 /*
-abs to.x - from.x  -   abs to.y-from.y  == 0
+
 верх вправо х+1   у + 1
 вверх влево х+1   у - 1
 вниз вправо х-1   у + 1
 вниз влево  х-1   у - 1
-
-
-
-
 
  */
 

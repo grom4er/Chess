@@ -5,6 +5,8 @@ import Table.Table;
 
 
 
+
+
 public class Rook extends Figure {
     final String name = "Rook";
 
