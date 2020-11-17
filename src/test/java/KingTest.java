@@ -41,7 +41,8 @@ public class KingTest {
     void MoveAndAttack() {
         //attack enemy figure
         Table testTable = new Table();
-        King king = new King(Figure.Colour.WHITE);Rook rookB = new Rook(Figure.Colour.BLACK);
+        King king = new King(Figure.Colour.WHITE);
+        Rook rookB = new Rook(Figure.Colour.BLACK);
         testTable.putFigure(new Coordinates("a5"), king);
         testTable.putFigure(new Coordinates("a6"), rookB);
         Assert.assertTrue(testTable.move(new Coordinates("a5"), new Coordinates("a6")));
@@ -50,11 +51,36 @@ public class KingTest {
     void NotMoove(){
         //attack same color figure
         Table testTable = new Table();
-        Rook rookW = new Rook(Figure.Colour.WHITE);
+        King rookW = new King(Figure.Colour.WHITE);
         Rook rookB = new Rook(Figure.Colour.WHITE);
         testTable.putFigure(new Coordinates("a5"), rookW);
         testTable.putFigure(new Coordinates("a6"), rookB);
         Assert.assertFalse(testTable.move(new Coordinates("a5"), new Coordinates("a6")));
+    }
+
+    @Test
+    void kingCheck(){
+        Table testTable = new Table();
+        King king = new King(Figure.Colour.WHITE);
+        Rook rookB = new Rook(Figure.Colour.WHITE);
+        Bishop bishop = new Bishop(Figure.Colour.BLACK);
+        testTable.putFigure(new Coordinates("a5"), king);
+        testTable.putFigure(new Coordinates("a6"), rookB);
+        testTable.putFigure(new Coordinates("d8"),bishop);
+        Assert.assertFalse(testTable.move(new Coordinates("a6"), new Coordinates("c6")));
+
+    }
+    @Test
+    void kingCheck2(){
+        Table testTable = new Table();
+        King king = new King(Figure.Colour.WHITE);
+        Rook rookB = new Rook(Figure.Colour.WHITE);
+        Bishop bishop = new Bishop(Figure.Colour.BLACK);
+        testTable.putFigure(new Coordinates("a5"), king);
+        testTable.putFigure(new Coordinates("b6"), rookB);
+        testTable.putFigure(new Coordinates("d8"),bishop);
+        Assert.assertFalse(testTable.move(new Coordinates("b6"), new Coordinates("b8")));
+
     }
 
 

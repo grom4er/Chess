@@ -80,6 +80,7 @@ public class Table {
         if (kingIsAttack(fromFigure.colour)) {
             putFigure(from, fromFigure);
             putFigure(to, toFigure);
+            return false;
         }
 
 
@@ -103,7 +104,7 @@ public class Table {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 Figure tempFigure = getFigure(getAndSetCoordinates(i, j));
-                if (type.isInstance(tempFigure) && tempFigure.colour != colour)
+                if (type.isInstance(tempFigure) && tempFigure.colour == colour)
                     list.add(getAndSetCoordinates(i, j));
             }
         }
