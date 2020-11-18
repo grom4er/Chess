@@ -1,6 +1,6 @@
-package Table;
+package table;
 
-import Figure.*;
+import figure.*;
 
 import java.util.ArrayList;
 import java.util.List;

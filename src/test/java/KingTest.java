@@ -1,6 +1,6 @@
-import Figure.*;
+import figure.*;
 
-import Table.*;
+import table.*;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 

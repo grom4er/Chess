@@ -1,6 +1,6 @@
-package Figure;
+package figure;
 
-import Table.*;
+import table.*;
 
 public class Pawn extends Figure {
     public final String name = "Pawn";

@@ -1,6 +1,6 @@
-package Figure;
+package figure;
 
-import Table.*;
+import table.*;
 
 public abstract class Figure {
     public String name;

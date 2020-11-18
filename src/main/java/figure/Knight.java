@@ -1,7 +1,7 @@
-package Figure;
+package figure;
 
-import Table.Coordinates;
-import Table.Table;
+import table.Coordinates;
+import table.Table;
 
 public class Knight extends Figure {
     public final String name = "Knight";
