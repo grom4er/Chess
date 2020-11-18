@@ -8,6 +8,11 @@ public class Coordinates {
         x = data.charAt(1) - 49;
     }
 
+    public Coordinates(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     public int getX() {
         return x;
     }
@@ -16,8 +21,5 @@ public class Coordinates {
         return y;
     }
 
-    public Coordinates(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
+
 }
