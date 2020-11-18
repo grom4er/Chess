@@ -16,8 +16,8 @@ public class Rook extends Figure {
     public boolean isMovePossible(Coordinates from, Coordinates to, Table table) {
         int coordinateX = from.x - to.x;
         int coordinateY = from.y - to.y;
-        if (isXorY(coordinateX, coordinateY)) return true; // for X
-        if (isXorY(coordinateY, coordinateX)) return true; // for Y
+        if (isXorY(coordinateX, coordinateY)) return true;
+        if (isXorY(coordinateY, coordinateX)) return true;
         return false;
     }
 
